@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from enum import Enum
 
-from .llm import llm
+from .llm import get_llm
 
 
 class TicketCategory(str, Enum):
@@ -109,7 +109,7 @@ Return ONLY the structured classification.
 
 
 def classify_ticket(message: str) -> TicketClassification:
-    structured_llm = llm.with_structured_output(TicketClassification)
+    structured_llm = get_llm().with_structured_output(TicketClassification)
 
     result = structured_llm.invoke(
         [

@@ -13,3 +13,5 @@ langchain-core
 langchain-text-splitters
 langchain-openai
 langgraph
+httpx
+cohere

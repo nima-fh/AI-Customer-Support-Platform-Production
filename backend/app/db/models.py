@@ -1,4 +1,5 @@
 from sqlalchemy import Integer, String, Numeric, ForeignKey, Text
+from pgvector.sqlalchemy import Vector
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -126,3 +127,13 @@ class Message(Base):
     content: Mapped[str] = mapped_column(Text, nullable=False)
 
     conversation: Mapped["Conversation"] = relationship(back_populates="messages")
+
+
+class KnowledgeDocument(Base):
+    __tablename__ = "knowledge_documents"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+
+    embedding: Mapped[list[float]] = mapped_column(Vector(1024), nullable=False)
