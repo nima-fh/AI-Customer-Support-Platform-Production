@@ -1,0 +1,9 @@
+Product FAQ
+
+Customers can contact support for information about product
+availability, specifications, and compatibility.
+
+Product availability may vary.
+
+For product-specific questions, customers should provide the
+product name or product ID when contacting support.

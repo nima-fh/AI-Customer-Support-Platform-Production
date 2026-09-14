@@ -1,0 +1,38 @@
+# ===========================
+# Backend / API
+# ===========================
+fastapi
+uvicorn
+
+# ===========================
+# Database
+# ===========================
+sqlalchemy
+psycopg[binary]
+
+# ===========================
+# Authentication / Security
+# ===========================
+python-dotenv
+pwdlib[argon2]
+PyJWT
+email-validator
+
+# ===========================
+# LangChain / LangGraph
+# ===========================
+langchain
+langchain-community
+langchain-core
+langchain-text-splitters
+langchain-huggingface
+langchain-ollama
+langgraph
+langchain-openai
+
+# ===========================
+# RAG / Embeddings
+# ===========================
+faiss-cpu
+sentence-transformers
+pymupdf
