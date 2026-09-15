@@ -136,4 +136,4 @@ class KnowledgeDocument(Base):
 
     content: Mapped[str] = mapped_column(Text, nullable=False)
 
-    embedding: Mapped[list[float]] = mapped_column(Vector(1024), nullable=False)
+    embedding: Mapped[list[float]] = mapped_column(Vector(384), nullable=False)

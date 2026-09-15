@@ -53,7 +53,7 @@ def generate_response(
         + create_ticket_tool
         + update_ticket_tool
     )
-    
+
     llm = get_llm()
 
     agent = create_agent(model=llm, tools=tools, system_prompt=SYSTEM_PROMPT)

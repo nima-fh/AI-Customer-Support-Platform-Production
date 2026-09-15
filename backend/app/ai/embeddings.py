@@ -1,31 +1,26 @@
-import os
+from functools import lru_cache
 
-from dotenv import load_dotenv
-from google import genai
-
-
-load_dotenv()
+from fastembed import TextEmbedding
 
 
-def get_gemini_client():
-    api_key = os.getenv("GEMINI_API_KEY")
-
-    if not api_key:
-        raise ValueError("GEMINI_API_KEY is not configured.")
-
-    return genai.Client(api_key=api_key)
-
-
-def embed_text(text: str, task="RETRIEVAL_QUERY"):
-    client = get_gemini_client()
-
-    response = client.models.embed_content(
-        model="gemini-embedding-001",
-        contents=text,
-        config={
-            "output_dimensionality": 1024,
-            "task_type": task,
-        },
+@lru_cache
+def get_embedding_model():
+    return TextEmbedding(
+        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
     )
 
-    return response.embeddings[0].values
+
+def embed_text(text: str) -> list[float]:
+    model = get_embedding_model()
+
+    embedding = next(model.embed([text]))
+
+    return embedding.tolist()
+
+
+def embed_documents(texts: list[str]) -> list[list[float]]:
+    model = get_embedding_model()
+
+    embeddings = model.embed(texts)
+
+    return [embedding.tolist() for embedding in embeddings]

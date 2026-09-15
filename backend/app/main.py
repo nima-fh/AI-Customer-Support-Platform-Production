@@ -2,7 +2,10 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.core.config import FRONTEND_URL
+
+
 from .api.routes.chat import router as chat_router
 from .api.routes.conversations import router as conversation_router
 from .api.routes.customers import router as customer_router

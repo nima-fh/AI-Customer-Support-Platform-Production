@@ -1,6 +1,6 @@
 from app.db.database import SessionLocal
 from app.db.models import KnowledgeDocument
-from app.ai.embeddings import embed_text
+from app.ai.embeddings import embed_documents
 
 
 documents = [
@@ -26,10 +26,13 @@ def ingest():
     db = SessionLocal()
 
     try:
-        for doc in documents:
-            embedding = embed_text(doc, task="RETRIEVAL_DOCUMENT")
+        embeddings = embed_documents(documents)
 
-            item = KnowledgeDocument(content=doc, embedding=embedding)
+        for doc, embedding in zip(documents, embeddings):
+            item = KnowledgeDocument(
+                content=doc,
+                embedding=embedding,
+            )
 
             db.add(item)
 

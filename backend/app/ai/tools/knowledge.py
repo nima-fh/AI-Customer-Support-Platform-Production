@@ -27,7 +27,10 @@ def create_search_knowledge_tool(db: Session):
         if not documents:
             return "No relevant information found in the knowledge base."
 
-        context = "\n\n".join([doc["content"] for doc in documents])
+        context = "\n\n".join(
+            [f"Document {doc['id']}:\n{doc['content']}" for doc in documents]
+        )
+
         return context
 
     return search_knowledge

@@ -8,7 +8,7 @@ def search_knowledge_documents(
     db: Session,
     query: str,
     match_count: int = 5,
-    threshold: float = 0.65,
+    threshold: float = 0.25,
 ) -> list[dict]:
     query_embedding = embed_text(query)
     embedding_string = "[" + ",".join(map(str, query_embedding)) + "]"
@@ -17,7 +17,7 @@ def search_knowledge_documents(
         """
         SELECT *
         FROM match_knowledge_documents(
-            CAST(:query_embedding AS extensions.vector(1024)),
+            CAST(:query_embedding AS extensions.vector(384)),
             :match_count
         )
         """

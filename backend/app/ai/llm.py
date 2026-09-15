@@ -15,7 +15,8 @@ def get_llm():
         raise ValueError("OPENROUTER_API_KEY is not configured.")
 
     return ChatOpenAI(
-        model=LLM_MODEL,
+        model="nvidia/nemotron-3.5-lightning:free",
+        max_tokens=500,
         temperature=0.2,
         api_key=api_key,
         base_url="https://openrouter.ai/api/v1",
