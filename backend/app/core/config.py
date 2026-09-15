@@ -17,7 +17,7 @@ FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
 LLM_MODEL = os.getenv(
     "LLM_MODEL",
-    "google/gemma-4-31b-it:free",
+    "nvidia/nemotron-3.5-lightning:free",
 )
 
 if not JWT_SECRET_KEY:
