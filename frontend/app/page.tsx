@@ -155,10 +155,11 @@ export default function Home() {
       return;
     }
 
-    const ws = new WebSocket(
-      `ws://localhost:8000/ws/conversations/${conversationId}`,
-    );
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+    const WS_URL = API_URL.replace(/^http/, "ws");
+
+    const ws = new WebSocket(`${WS_URL}/ws/conversations/${conversationId}`);
     ws.onopen = () => {
       console.log("WebSocket connected");
     };
@@ -239,7 +240,7 @@ export default function Home() {
               ) : (
                 <>
                   <Sparkles size={14} className="text-indigo-400" />
-                  Powered by Qwen3
+                  Powered by nvidia/nemotron-3.5
                 </>
               )}
             </div>
